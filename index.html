@@ -5,134 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cek Raport – SMK N 1 Kismantoro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:        #f1f5f0;
+      --blue:      #1558b0;
+      --blue-d:    #0d3d7a;
+      --blue-l:    #e8f0fb;
+      --blue-m:    #2e72c8;
+      --bg:        #f4f6f9;
       --surface:   #ffffff;
-      --border:    #dce5d9;
-      --green:     #2d6a4f;
-      --green-l:   #d8ede3;
-      --green-d:   #1b4332;
-      --green-m:   #40916c;
-      --red:       #c0392b;
-      --red-l:     #fce8e6;
-      --yellow:    #b45309;
-      --yellow-l:  #fef3c7;
-      --text:      #1a2b1f;
-      --text2:     #52695a;
-      --text3:     #8aa08f;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
-      --shadow:    0 2px 8px rgba(0,0,0,.08);
-      --shadow-md: 0 4px 20px rgba(0,0,0,.1);
-      --r:         8px;
-      --r-lg:      12px;
+      --border:    #e0e6ef;
+      --text:      #0f1923;
+      --text2:     #4a5668;
+      --text3:     #9aaabb;
+      --green:     #1a7a4a;
+      --green-l:   #e4f5ec;
+      --red:       #b91c1c;
+      --red-l:     #fef2f2;
+      --amber:     #92400e;
+      --amber-l:   #fffbeb;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.07);
+      --shadow:    0 2px 8px rgba(0,0,0,.09);
+      --r:         6px;
+      --r-lg:      10px;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
 
-    /* HEADER */
-    header{background:var(--green-d);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25)}
-    .h-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:12px;height:56px}
-    .h-logo{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-    .h-logo-icon{width:34px;height:34px;background:var(--green-m);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-    .h-title{color:#fff;font-weight:700;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .h-sub{color:rgba(255,255,255,.55);font-size:.7rem;margin-top:1px}
-    .btn-h{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);border-radius:6px;padding:6px 12px;font-size:.78rem;font-weight:600;font-family:inherit;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .15s}
-    .btn-h:hover{background:rgba(255,255,255,.22)}
+    /* ── HEADER ── */
+    header { background: var(--blue-d); padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 0 rgba(255,255,255,.08), 0 4px 16px rgba(0,0,0,.3); }
+    .h-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 16px; height: 52px; }
+    .h-left { flex: 1; min-width: 0; }
+    .h-title { color: #fff; font-weight: 700; font-size: .92rem; letter-spacing: -.01em; }
+    .h-sub { color: rgba(255,255,255,.45); font-size: .7rem; margin-top: 1px; }
+    .btn-h { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.85); border-radius: var(--r); padding: 5px 12px; font-size: .75rem; font-weight: 600; font-family: inherit; cursor: pointer; text-decoration: none; transition: background .15s; white-space: nowrap; }
+    .btn-h:hover { background: rgba(255,255,255,.18); }
 
-    /* BREADCRUMB */
-    .bc-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:56px;z-index:90}
-    .bc-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:2px;height:40px;overflow-x:auto;scrollbar-width:none}
-    .bc-inner::-webkit-scrollbar{display:none}
-    .bc-btn{background:none;border:none;font-family:inherit;font-size:.8rem;font-weight:600;color:var(--green-m);cursor:pointer;padding:4px 7px;border-radius:5px;white-space:nowrap;transition:background .12s}
-    .bc-btn:hover{background:var(--green-l)}
-    .bc-btn.cur{color:var(--text2);cursor:default;font-weight:500}
-    .bc-btn.cur:hover{background:none}
-    .bc-sep{color:var(--text3);font-size:.75rem;padding:0 1px}
+    /* ── BREADCRUMB ── */
+    .bc-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; position: sticky; top: 52px; z-index: 90; }
+    .bc-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; height: 38px; gap: 0; overflow-x: auto; scrollbar-width: none; }
+    .bc-inner::-webkit-scrollbar { display: none; }
+    .bc-btn { background: none; border: none; font-family: inherit; font-size: .78rem; font-weight: 500; color: var(--blue); cursor: pointer; padding: 3px 8px; border-radius: 4px; white-space: nowrap; transition: background .1s; }
+    .bc-btn:hover { background: var(--blue-l); }
+    .bc-btn.cur { color: var(--text2); cursor: default; font-weight: 400; }
+    .bc-btn.cur:hover { background: none; }
+    .bc-sep { color: var(--text3); font-size: .7rem; }
 
-    /* MAIN */
-    main{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+    /* ── MAIN ── */
+    main { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
 
-    /* CONFIG NOTICE */
-    #cfgNote{background:var(--yellow-l);border:1.5px solid #f0c060;border-radius:var(--r);padding:14px 18px;margin-bottom:16px;font-size:.84rem;line-height:1.8;color:#5a3c00;display:none}
-    #cfgNote strong{display:block;margin-bottom:5px;font-size:.9rem}
-    #cfgNote code{background:rgba(0,0,0,.07);border-radius:4px;padding:1px 5px;font-family:'DM Mono',monospace;font-size:.8rem}
-    #cfgNote ol{margin-left:18px}
+    /* ── CONFIG ── */
+    #cfgNote { background: var(--amber-l); border: 1px solid #fcd34d; border-radius: var(--r); padding: 14px 16px; margin-bottom: 16px; font-size: .82rem; line-height: 1.8; color: var(--amber); display: none; }
+    #cfgNote strong { display: block; margin-bottom: 4px; }
+    #cfgNote code { background: rgba(0,0,0,.06); border-radius: 3px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace; font-size: .78rem; }
+    #cfgNote ol { margin-left: 16px; }
 
-    /* STATS */
-    #statsRow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-    .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px}
-    .stat-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-    .si-g{background:var(--green-l)} .si-r{background:var(--red-l)} .si-y{background:var(--yellow-l)}
-    .stat-num{font-size:1.8rem;font-weight:700;line-height:1}
-    .sn-g{color:var(--green)} .sn-r{color:var(--red)} .sn-y{color:var(--yellow)}
-    .stat-label{font-size:.72rem;color:var(--text2);margin-top:2px}
+    /* ── STATS PANEL ── */
+    #statsPanel { display: none; margin-bottom: 20px; }
 
-    /* PAGE TITLE */
-    .page-title{font-size:1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-    .page-title span{color:var(--text3);font-weight:400;font-size:.85rem}
+    .stats-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px; box-shadow: var(--shadow-sm); }
+    .stat-label { font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: 8px; }
+    .stat-num { font-size: 2.2rem; font-weight: 700; line-height: 1; }
+    .stat-sub { font-size: .72rem; color: var(--text2); margin-top: 4px; }
+    .sn-blue   { color: var(--blue); }
+    .sn-green  { color: var(--green); }
+    .sn-red    { color: var(--red); }
+    .sn-amber  { color: var(--amber); }
 
-    /* FOLDER GRID */
-    .folder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
-    .folder-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:20px 18px;cursor:pointer;box-shadow:var(--shadow-sm);transition:border-color .15s,box-shadow .15s,transform .12s;display:flex;flex-direction:column;gap:8px}
-    .folder-card:hover{border-color:var(--green-m);box-shadow:var(--shadow-md);transform:translateY(-2px)}
-    .fc-icon{font-size:2rem}
-    .fc-name{font-weight:700;font-size:.95rem}
-    .fc-meta{font-size:.74rem;color:var(--text2)}
+    /* Progress bar */
+    .prog-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px; box-shadow: var(--shadow-sm); }
+    .prog-title { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: 12px; }
+    .prog-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .prog-bar-row:last-child { margin-bottom: 0; }
+    .prog-label { font-size: .78rem; font-weight: 500; width: 54px; flex-shrink: 0; color: var(--text2); }
+    .prog-bar-bg { flex: 1; height: 8px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+    .prog-bar-fill { height: 100%; border-radius: 99px; background: var(--blue); transition: width .4s ease; }
+    .prog-pct { font-size: .72rem; font-weight: 600; color: var(--text2); width: 36px; text-align: right; flex-shrink: 0; }
 
-    /* SECTION HEAD */
-    .sec-head{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);padding:14px 0 6px}
+    /* Jurusan breakdown */
+    .jurusan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .jurusan-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 14px; box-shadow: var(--shadow-sm); }
+    .jurusan-name { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text3); margin-bottom: 6px; }
+    .jurusan-num { font-size: 1.5rem; font-weight: 700; color: var(--blue); }
+    .jurusan-of { font-size: .72rem; color: var(--text2); }
+    .jurusan-bar-bg { height: 4px; background: var(--bg); border-radius: 99px; margin-top: 10px; overflow: hidden; }
+    .jurusan-bar-fill { height: 100%; border-radius: 99px; background: var(--blue); }
 
-    /* FILE LIST */
-    .file-list{display:flex;flex-direction:column;gap:5px}
-    .file-row{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;gap:11px;padding:10px 14px;box-shadow:var(--shadow-sm)}
-    .file-row.miss{background:#fafafa;border-style:dashed;border-color:#ccc;opacity:.72}
-    .file-row.bad{border-color:#f8c59a;background:#fffaf5}
-    .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-    .d-ok{background:var(--green-m)}
-    .d-miss{background:transparent;border:2px dashed #aaa}
-    .d-bad{background:var(--yellow)}
-    .file-name{flex:1;font-size:.84rem;font-weight:500;font-family:'DM Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
-    .file-row.miss .file-name{color:var(--text3);font-style:italic;font-family:'DM Sans',sans-serif;font-weight:400}
-    .file-row.bad .file-name{color:var(--yellow)}
-    .file-badge{font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0}
-    .fb-ok{background:var(--green-l);color:var(--green-d)}
-    .fb-miss{background:#efefef;color:#999}
-    .fb-bad{background:var(--yellow-l);color:var(--yellow)}
-    .file-link{display:inline-flex;align-items:center;color:var(--green-m);font-size:.74rem;font-weight:600;text-decoration:none;white-space:nowrap;padding:4px 8px;border-radius:5px;transition:background .12s;flex-shrink:0}
-    .file-link:hover{background:var(--green-l)}
+    /* ── PAGE TITLE ── */
+    .page-title { font-size: .92rem; font-weight: 700; margin-bottom: 12px; color: var(--text); display: flex; align-items: center; justify-content: space-between; }
+    .page-title-count { font-size: .75rem; font-weight: 400; color: var(--text3); }
 
-    /* STATE */
-    .state{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);display:flex;flex-direction:column;align-items:center;padding:60px 32px;text-align:center;gap:10px;box-shadow:var(--shadow-sm)}
-    .state-icon{font-size:2.8rem}
-    .state h2{font-size:1.05rem;font-weight:700}
-    .state p{font-size:.84rem;color:var(--text2);max-width:380px;line-height:1.6}
-    .spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--green-m);border-radius:50%;animation:spin .7s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
+    /* ── FOLDER GRID ── */
+    .folder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+    .folder-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 18px 16px; cursor: pointer; box-shadow: var(--shadow-sm); transition: border-color .15s, box-shadow .15s, transform .1s; display: flex; flex-direction: column; gap: 6px; }
+    .folder-card:hover { border-color: var(--blue-m); box-shadow: var(--shadow), 0 0 0 3px var(--blue-l); transform: translateY(-1px); }
+    .fc-tag { display: inline-block; background: var(--blue-l); color: var(--blue); font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 3px; letter-spacing: .04em; text-transform: uppercase; width: fit-content; }
+    .fc-name { font-weight: 700; font-size: .9rem; color: var(--text); margin-top: 2px; }
+    .fc-meta { font-size: .7rem; color: var(--text3); }
 
-    footer{text-align:center;padding:16px;font-size:.74rem;color:var(--text3)}
+    /* ── SECTION HEAD ── */
+    .sec-head { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); padding: 16px 0 6px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .sec-head:first-of-type { border-top: none; margin-top: 0; }
 
-    @media(max-width:600px){
-      .stat-num{font-size:1.4rem}
-      main{padding:14px 10px 50px}
+    /* ── FILE LIST ── */
+    .file-list { display: flex; flex-direction: column; gap: 4px; }
+    .file-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); display: flex; align-items: center; gap: 10px; padding: 9px 12px; box-shadow: var(--shadow-sm); }
+    .file-row.miss { background: var(--bg); border-style: dashed; border-color: #d0d9e6; box-shadow: none; }
+    .file-row.bad { border-color: #fbbf24; background: var(--amber-l); }
+
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .d-ok   { background: var(--green); }
+    .d-miss { background: transparent; border: 1.5px dashed var(--text3); }
+    .d-bad  { background: #f59e0b; }
+
+    .file-name { flex: 1; font-size: .8rem; font-weight: 500; font-family: 'JetBrains Mono', monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+    .file-row.miss .file-name { font-family: 'Inter', sans-serif; color: var(--text3); font-weight: 400; font-style: italic; font-size: .78rem; }
+    .file-row.bad  .file-name { color: var(--amber); }
+
+    .file-badge { font-size: .63rem; font-weight: 700; padding: 2px 7px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; letter-spacing: .03em; }
+    .fb-ok   { background: var(--green-l); color: var(--green); }
+    .fb-miss { background: var(--bg); color: var(--text3); border: 1px solid var(--border); }
+    .fb-bad  { background: var(--amber-l); color: var(--amber); }
+
+    .file-link { display: inline-flex; align-items: center; color: var(--blue); font-size: .72rem; font-weight: 600; text-decoration: none; padding: 3px 8px; border-radius: 4px; transition: background .1s; flex-shrink: 0; }
+    .file-link:hover { background: var(--blue-l); }
+
+    /* ── STATE ── */
+    .state { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); display: flex; flex-direction: column; align-items: center; padding: 56px 32px; text-align: center; gap: 8px; box-shadow: var(--shadow-sm); }
+    .state-icon { font-size: 2rem; margin-bottom: 4px; }
+    .state h2 { font-size: .95rem; font-weight: 700; }
+    .state p { font-size: .8rem; color: var(--text2); max-width: 360px; line-height: 1.65; }
+    .spinner { width: 28px; height: 28px; border: 2.5px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    footer { text-align: center; padding: 16px; font-size: .7rem; color: var(--text3); }
+
+    @media (max-width: 600px) {
+      .stats-top { grid-template-columns: repeat(3,1fr); }
+      .jurusan-grid { grid-template-columns: repeat(3,1fr); }
+      .stat-num { font-size: 1.6rem; }
+      main { padding: 14px 10px 50px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     ⚙️  KONFIGURASI — edit bagian ini
-════════════════════════════════════════ -->
+<!-- ════════════════════════════════
+     KONFIGURASI
+════════════════════════════════ -->
 <script>
 const CONFIG = {
-  // URL dari Apps Script setelah di-deploy (lihat panduan)
   SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx6haneCE4lnbOfaHqkCRCbyA7grBNN98_t9GBKwFWT1GHmw25d_s69lRVI2qcDRpOA/exec",
-
-  SCHOOL:  "SMK Negeri 1 Kismantoro",
+  SCHOOL: "SMK Negeri 1 Kismantoro",
 };
 
-// Daftar kelas yang diharapkan tiap semester
 const LEVELS  = ['X', 'XI', 'XII'];
 const JURUSAN = [
   { kode: 'TJKT', jumlah: 3 },
@@ -140,29 +167,24 @@ const JURUSAN = [
   { kode: 'TO',   jumlah: 2 },
 ];
 
-// Generate semua 21 kode kelas: XTJKT1 … XIITO2
 const EXPECTED = [];
 for (const lvl of LEVELS)
   for (const j of JURUSAN)
     for (let i = 1; i <= j.jumlah; i++)
       EXPECTED.push(`${lvl}${j.kode}${i}`);
 
-// Regex validasi format nama file (tanpa ekstensi)
-// Contoh valid: RAPOR 2526 Gasal XITJKT1
+// Format valid: RAPOR 2526 Gasal XITJKT1
 const FORMAT_RE = /^RAPOR\s+(\d{4})\s+(Gasal|Genap)\s+((X|XI|XII)(TJKT[1-3]|TPFL[1-2]|TO[1-2]))$/i;
 </script>
-<!-- ══════════════════════════════════════ -->
+<!-- ════════════════════════════════ -->
 
 <header>
   <div class="h-inner">
-    <div class="h-logo">
-      <div class="h-logo-icon">📋</div>
-      <div>
-        <div class="h-title">Cek Raport</div>
-        <div class="h-sub" id="hSub"></div>
-      </div>
+    <div class="h-left">
+      <div class="h-title">Cek Raport</div>
+      <div class="h-sub" id="hSub"></div>
     </div>
-    <button class="btn-h" onclick="doReload()">⟳ Refresh</button>
+    <button class="btn-h" onclick="doReload()">Refresh</button>
   </div>
 </header>
 
@@ -172,30 +194,44 @@ const FORMAT_RE = /^RAPOR\s+(\d{4})\s+(Gasal|Genap)\s+((X|XI|XII)(TJKT[1-3]|TPFL
 
 <main>
   <div id="cfgNote">
-    <strong>⚠️ SCRIPT_URL belum diisi</strong>
-    Ikuti langkah berikut:
+    <strong>Konfigurasi diperlukan</strong>
+    Edit bagian <code>CONFIG</code> di <code>index.html</code> — isi <code>SCRIPT_URL</code> dengan URL dari Apps Script yang sudah di-deploy.
     <ol>
-      <li>Buka <a href="https://script.google.com" target="_blank">script.google.com</a> → Buat project baru</li>
-      <li>Paste isi file <code>code.gs</code>, isi <code>ROOT_FOLDER_ID</code> dengan ID folder Drive</li>
-      <li>Klik <b>Deploy → New deployment → Web App</b></li>
-      <li>Execute as: <b>Me</b> · Who has access: <b>Anyone</b> → Deploy</li>
-      <li>Salin URL yang muncul, paste ke <code>SCRIPT_URL</code> di file ini</li>
+      <li>Buka <a href="https://script.google.com" target="_blank">script.google.com</a> → project Apps Script</li>
+      <li>Deploy → New deployment → Web App → Execute as: Me · Anyone → Deploy</li>
+      <li>Salin URL <code>/exec</code> → paste ke <code>SCRIPT_URL</code></li>
     </ol>
   </div>
 
-  <div id="statsRow" style="display:none">
-    <div class="stat-card">
-      <div class="stat-icon si-g">✅</div>
-      <div><div class="stat-num sn-g" id="sOk">0</div><div class="stat-label">Sudah upload</div></div>
+  <!-- STATISTIK PANEL (muncul di level semester) -->
+  <div id="statsPanel">
+    <!-- Angka utama -->
+    <div class="stats-top">
+      <div class="stat-card">
+        <div class="stat-label">Sudah Upload</div>
+        <div class="stat-num sn-green" id="sOk">0</div>
+        <div class="stat-sub" id="sOkSub"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Belum Upload</div>
+        <div class="stat-num sn-red" id="sMiss">0</div>
+        <div class="stat-sub" id="sMissSub"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Format Salah</div>
+        <div class="stat-num sn-amber" id="sBad">0</div>
+        <div class="stat-sub" id="sBadSub"></div>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon si-r">❌</div>
-      <div><div class="stat-num sn-r" id="sMiss">0</div><div class="stat-label">Belum upload</div></div>
+
+    <!-- Progress per tingkat -->
+    <div class="prog-wrap" style="margin-bottom:14px">
+      <div class="prog-title">Progres per Tingkat</div>
+      <div id="progBars"></div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon si-y">⚠️</div>
-      <div><div class="stat-num sn-y" id="sBad">0</div><div class="stat-label">Format salah</div></div>
-    </div>
+
+    <!-- Breakdown per jurusan -->
+    <div class="jurusan-grid" id="jurusanGrid"></div>
   </div>
 
   <div id="content">
@@ -206,27 +242,20 @@ const FORMAT_RE = /^RAPOR\s+(\d{4})\s+(Gasal|Genap)\s+((X|XI|XII)(TJKT[1-3]|TPFL
 <footer id="foot"></footer>
 
 <script>
-/* ══════════════════════════════════
-   NAVIGATION STATE
-══════════════════════════════════ */
-// navStack: [{ id, name, type: 'root'|'year'|'semester' }]
+/* ═══════════════ STATE ═══════════════ */
 let navStack = [];
 
-/* ══════════════════════════════════
-   INIT
-══════════════════════════════════ */
+/* ═══════════════ INIT ════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('hSub').textContent = CONFIG.SCHOOL;
   document.getElementById('foot').textContent = `Cek Raport · ${CONFIG.SCHOOL}`;
 
   if (CONFIG.SCRIPT_URL === 'SCRIPT_URL_KAMU') {
     document.getElementById('cfgNote').style.display = 'block';
-    showState('⚙️', 'Konfigurasi belum diisi',
-      'Isi SCRIPT_URL di bagian CONFIG pada index.html. Lihat petunjuk di atas.');
+    showState('', 'Konfigurasi belum diisi',
+      'Isi SCRIPT_URL di bagian CONFIG pada index.html.');
     return;
   }
-
-  // Mulai dari root (tidak perlu folderId, script pakai ROOT_FOLDER_ID)
   openFolder(null, 'Home', 'root');
 });
 
@@ -237,9 +266,7 @@ function doReload() {
   openFolder(top.id, top.name, top.type);
 }
 
-/* ══════════════════════════════════
-   NAVIGATION
-══════════════════════════════════ */
+/* ═══════════════ NAVIGATION ══════════ */
 function openFolder(id, name, type) {
   navStack.push({ id, name, type });
   renderBreadcrumb();
@@ -256,17 +283,15 @@ function goTo(idx) {
 function renderBreadcrumb() {
   document.getElementById('breadcrumb').innerHTML = navStack.map((item, i) => {
     const last  = i === navStack.length - 1;
-    const label = item.type === 'root' ? '🏠 Home' : item.name;
-    return `${i > 0 ? '<span class="bc-sep">›</span>' : ''}
+    const label = item.type === 'root' ? 'Home' : item.name;
+    return `${i > 0 ? '<span class="bc-sep"> / </span>' : ''}
       <button class="bc-btn${last ? ' cur' : ''}" ${last ? '' : `onclick="goTo(${i})"`}>
         ${esc(label)}
       </button>`;
   }).join('');
 }
 
-/* ══════════════════════════════════
-   FETCH DARI APPS SCRIPT
-══════════════════════════════════ */
+/* ═══════════════ FETCH ═══════════════ */
 async function fetchItems(folderId) {
   const url = folderId
     ? `${CONFIG.SCRIPT_URL}?folderId=${encodeURIComponent(folderId)}`
@@ -275,15 +300,13 @@ async function fetchItems(folderId) {
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   const data = await r.json();
   if (!data.ok) throw new Error(data.error || 'Gagal mengambil data');
-  return data.items; // [{ id, name, type:'folder'|'file', modifiedTime, url }]
+  return data.items;
 }
 
-/* ══════════════════════════════════
-   LOAD & RENDER ROUTER
-══════════════════════════════════ */
+/* ═══════════════ LOAD ROUTER ═════════ */
 async function load(folderId, type) {
   showState('', 'Memuat…', '', true);
-  document.getElementById('statsRow').style.display = 'none';
+  document.getElementById('statsPanel').style.display = 'none';
   try {
     const items = await fetchItems(folderId);
     if (type === 'root' || type === 'year') {
@@ -292,78 +315,102 @@ async function load(folderId, type) {
       renderSemester(items.filter(i => i.type === 'file'));
     }
   } catch(e) {
-    showState('❌', 'Gagal memuat',
-      `${esc(e.message)}<br>Pastikan Apps Script sudah di-deploy dan folder Drive di-share publik.`);
+    showState('', 'Gagal memuat',
+      `${esc(e.message)} — Pastikan Apps Script sudah di-deploy dan folder Drive di-share publik.`);
   }
 }
 
-/* ══════════════════════════════════
-   RENDER: FOLDER LIST
-══════════════════════════════════ */
+/* ═══════════════ RENDER: FOLDERS ═════ */
 function renderFolders(folders, currentType) {
   const nextType = currentType === 'root' ? 'year' : 'semester';
+  const tagLabel = currentType === 'root' ? 'TAHUN AJARAN' : 'SEMESTER';
+
   if (!folders.length) {
-    showState('📭', 'Folder kosong',
+    showState('', 'Folder kosong',
       currentType === 'root'
-        ? 'Tidak ada folder tahun di dalam folder root Drive.'
+        ? 'Tidak ada folder tahun di dalam folder Drive.'
         : 'Tidak ada folder semester di sini.');
     return;
   }
+
   setContent(`
     <div class="page-title">
-      ${currentType === 'root' ? '🗂️ Pilih Tahun Ajaran' : '📂 Pilih Semester'}
-      <span>${folders.length} folder</span>
+      ${currentType === 'root' ? 'Tahun Ajaran' : 'Semester'}
+      <span class="page-title-count">${folders.length} folder</span>
     </div>
     <div class="folder-grid">
       ${folders.map(f => `
         <div class="folder-card" onclick="openFolder('${esc(f.id)}','${esc(f.name)}','${nextType}')">
-          <div class="fc-icon">${currentType === 'root' ? '🗂️' : semIcon(f.name)}</div>
+          <div class="fc-tag">${tagLabel}</div>
           <div class="fc-name">${esc(f.name)}</div>
-          <div class="fc-meta">Diperbarui ${fmtDate(f.modifiedTime)}</div>
+          <div class="fc-meta">${fmtDate(f.modifiedTime)}</div>
         </div>`).join('')}
     </div>`);
 }
 
-function semIcon(n) {
-  const l = n.toLowerCase();
-  if (l.includes('gasal') || l.includes('ganjil')) return '🌱';
-  if (l.includes('genap')) return '🌿';
-  return '📂';
-}
-
-/* ══════════════════════════════════
-   RENDER: SEMESTER — file + statistik
-══════════════════════════════════ */
+/* ═══════════════ RENDER: SEMESTER ════ */
 function renderSemester(driveFiles) {
-  // Parse tiap file
+  // Parse semua file
   const parsed = driveFiles.map(f => {
     const base = f.name.replace(/\.[^.]+$/, '').trim();
     const m    = base.match(FORMAT_RE);
     return { ...f, valid: !!m, kelas: m ? m[3].toUpperCase() : null };
   });
 
-  // Pisah: sesuai format & kelas dikenal vs tidak
-  const uploaded = {}; // kelas → file
+  const uploaded = {};
   const badFiles = [];
 
   for (const f of parsed) {
-    if (f.valid && EXPECTED.includes(f.kelas)) {
-      uploaded[f.kelas] = f;
-    } else {
-      badFiles.push(f);
-    }
+    if (f.valid && EXPECTED.includes(f.kelas)) uploaded[f.kelas] = f;
+    else badFiles.push(f);
   }
 
-  const nOk  = Object.keys(uploaded).length;
-  const nMiss = EXPECTED.length - nOk;
-  const nBad  = badFiles.length;
+  const nOk   = Object.keys(uploaded).length;
+  const nMiss  = EXPECTED.length - nOk;
+  const nBad   = badFiles.length;
+  const total  = EXPECTED.length;
 
-  document.getElementById('sOk').textContent  = nOk;
-  document.getElementById('sMiss').textContent = nMiss;
-  document.getElementById('sBad').textContent  = nBad;
-  document.getElementById('statsRow').style.display = 'grid';
+  // ── Isi statistik panel ──
+  document.getElementById('sOk').textContent   = nOk;
+  document.getElementById('sMiss').textContent  = nMiss;
+  document.getElementById('sBad').textContent   = nBad;
+  document.getElementById('sOkSub').textContent  = `dari ${total} kelas (${Math.round(nOk/total*100)}%)`;
+  document.getElementById('sMissSub').textContent = `kelas belum ada file`;
+  document.getElementById('sBadSub').textContent  = nBad > 0 ? 'nama tidak sesuai format' : 'semua format benar';
 
-  let html = `<div class="page-title">📄 Status Upload per Kelas <span>${EXPECTED.length} kelas diharapkan</span></div>`;
+  // Progress per tingkat
+  const progBars = LEVELS.map(lvl => {
+    const kelasLvl = EXPECTED.filter(k => k.startsWith(lvl));
+    const okLvl    = kelasLvl.filter(k => uploaded[k]).length;
+    const pct      = Math.round(okLvl / kelasLvl.length * 100);
+    return `<div class="prog-bar-row">
+      <div class="prog-label">Kelas ${lvl}</div>
+      <div class="prog-bar-bg"><div class="prog-bar-fill" style="width:${pct}%"></div></div>
+      <div class="prog-pct">${okLvl}/${kelasLvl.length}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('progBars').innerHTML = progBars;
+
+  // Breakdown per jurusan
+  const jurusanCards = JURUSAN.map(j => {
+    const kelasJ = EXPECTED.filter(k => k.includes(j.kode));
+    const okJ    = kelasJ.filter(k => uploaded[k]).length;
+    const pct    = Math.round(okJ / kelasJ.length * 100);
+    return `<div class="jurusan-card">
+      <div class="jurusan-name">${j.kode}</div>
+      <div class="jurusan-num">${okJ} <span class="jurusan-of">/ ${kelasJ.length}</span></div>
+      <div class="jurusan-bar-bg"><div class="jurusan-bar-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+  document.getElementById('jurusanGrid').innerHTML = jurusanCards;
+
+  document.getElementById('statsPanel').style.display = 'block';
+
+  // ── Render daftar file ──
+  let html = `<div class="page-title">
+    Status Upload per Kelas
+    <span class="page-title-count">${total} kelas</span>
+  </div>`;
 
   for (const lvl of LEVELS) {
     html += `<div class="sec-head">Tingkat ${lvl}</div><div class="file-list">`;
@@ -372,20 +419,18 @@ function renderSemester(driveFiles) {
         const kelas = `${lvl}${j.kode}${i}`;
         const f     = uploaded[kelas];
         if (f) {
-          html += `
-            <div class="file-row">
-              <div class="dot d-ok"></div>
-              <div class="file-name" title="${esc(f.name)}">${esc(f.name)}</div>
-              <span class="file-badge fb-ok">✓ Upload</span>
-              <a class="file-link" href="${esc(f.url)}" target="_blank" rel="noopener">↗ Drive</a>
-            </div>`;
+          html += `<div class="file-row">
+            <div class="status-dot d-ok"></div>
+            <div class="file-name" title="${esc(f.name)}">${esc(f.name)}</div>
+            <span class="file-badge fb-ok">Upload</span>
+            <a class="file-link" href="${esc(f.url)}" target="_blank" rel="noopener">Buka</a>
+          </div>`;
         } else {
-          html += `
-            <div class="file-row miss">
-              <div class="dot d-miss"></div>
-              <div class="file-name">Belum ada — ${kelas}</div>
-              <span class="file-badge fb-miss">Belum</span>
-            </div>`;
+          html += `<div class="file-row miss">
+            <div class="status-dot d-miss"></div>
+            <div class="file-name">Belum ada &mdash; ${kelas}</div>
+            <span class="file-badge fb-miss">Belum</span>
+          </div>`;
         }
       }
     }
@@ -393,15 +438,14 @@ function renderSemester(driveFiles) {
   }
 
   if (badFiles.length) {
-    html += `
-      <div class="sec-head">⚠️ Format tidak sesuai — ${badFiles.length} file</div>
+    html += `<div class="sec-head">Format tidak sesuai &mdash; ${badFiles.length} file</div>
       <div class="file-list">
         ${badFiles.map(f => `
           <div class="file-row bad">
-            <div class="dot d-bad"></div>
+            <div class="status-dot d-bad"></div>
             <div class="file-name" title="${esc(f.name)}">${esc(f.name)}</div>
-            <span class="file-badge fb-bad">Format ⚠</span>
-            <a class="file-link" href="${esc(f.url)}" target="_blank" rel="noopener">↗ Drive</a>
+            <span class="file-badge fb-bad">Format</span>
+            <a class="file-link" href="${esc(f.url)}" target="_blank" rel="noopener">Buka</a>
           </div>`).join('')}
       </div>`;
   }
@@ -409,14 +453,13 @@ function renderSemester(driveFiles) {
   setContent(html);
 }
 
-/* ══════════════════════════════════
-   HELPERS
-══════════════════════════════════ */
+/* ═══════════════ HELPERS ════════════ */
 function setContent(h) { document.getElementById('content').innerHTML = h; }
 
 function showState(icon, title, msg, spinner = false) {
+  document.getElementById('statsPanel').style.display = 'none';
   setContent(`<div class="state">
-    ${spinner ? '<div class="spinner"></div>' : `<div class="state-icon">${icon}</div>`}
+    ${spinner ? '<div class="spinner"></div>' : icon ? `<div class="state-icon">${icon}</div>` : ''}
     <h2>${title}</h2>
     ${msg ? `<p>${msg}</p>` : ''}
   </div>`);
