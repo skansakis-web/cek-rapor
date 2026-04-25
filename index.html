@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cek Raport – SMK N 1 Kismantoro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #f1f5f0;
+      --surface:   #ffffff;
+      --border:    #dce5d9;
+      --green:     #2d6a4f;
+      --green-l:   #d8ede3;
+      --green-d:   #1b4332;
+      --green-m:   #40916c;
+      --red:       #c0392b;
+      --red-l:     #fce8e6;
+      --yellow:    #b45309;
+      --yellow-l:  #fef3c7;
+      --text:      #1a2b1f;
+      --text2:     #52695a;
+      --text3:     #8aa08f;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+      --shadow:    0 2px 8px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.1);
+      --r:         8px;
+      --r-lg:      12px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+    /* HEADER */
+    header{background:var(--green-d);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+    .h-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:12px;height:56px}
+    .h-logo{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+    .h-logo-icon{width:34px;height:34px;background:var(--green-m);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .h-title{color:#fff;font-weight:700;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .h-sub{color:rgba(255,255,255,.55);font-size:.7rem;margin-top:1px}
+    .btn-h{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);border-radius:6px;padding:6px 12px;font-size:.78rem;font-weight:600;font-family:inherit;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .15s}
+    .btn-h:hover{background:rgba(255,255,255,.22)}
+
+    /* BREADCRUMB */
+    .bc-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:56px;z-index:90}
+    .bc-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:2px;height:40px;overflow-x:auto;scrollbar-width:none}
+    .bc-inner::-webkit-scrollbar{display:none}
+    .bc-btn{background:none;border:none;font-family:inherit;font-size:.8rem;font-weight:600;color:var(--green-m);cursor:pointer;padding:4px 7px;border-radius:5px;white-space:nowrap;transition:background .12s}
+    .bc-btn:hover{background:var(--green-l)}
+    .bc-btn.cur{color:var(--text2);cursor:default;font-weight:500}
+    .bc-btn.cur:hover{background:none}
+    .bc-sep{color:var(--text3);font-size:.75rem;padding:0 1px}
+
+    /* MAIN */
+    main{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+
+    /* CONFIG NOTICE */
+    #cfgNote{background:var(--yellow-l);border:1.5px solid #f0c060;border-radius:var(--r);padding:14px 18px;margin-bottom:16px;font-size:.84rem;line-height:1.8;color:#5a3c00;display:none}
+    #cfgNote strong{display:block;margin-bottom:5px;font-size:.9rem}
+    #cfgNote code{background:rgba(0,0,0,.07);border-radius:4px;padding:1px 5px;font-family:'DM Mono',monospace;font-size:.8rem}
+    #cfgNote ol{margin-left:18px}
+
+    /* STATS */
+    #statsRow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+    .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px}
+    .stat-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+    .si-g{background:var(--green-l)} .si-r{background:var(--red-l)} .si-y{background:var(--yellow-l)}
+    .stat-num{font-size:1.8rem;font-weight:700;line-height:1}
+    .sn-g{color:var(--green)} .sn-r{color:var(--red)} .sn-y{color:var(--yellow)}
+    .stat-label{font-size:.72rem;color:var(--text2);margin-top:2px}
+
+    /* PAGE TITLE */
+    .page-title{font-size:1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .page-title span{color:var(--text3);font-weight:400;font-size:.85rem}
+
+    /* FOLDER GRID */
+    .folder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+    .folder-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:20px 18px;cursor:pointer;box-shadow:var(--shadow-sm);transition:border-color .15s,box-shadow .15s,transform .12s;display:flex;flex-direction:column;gap:8px}
+    .folder-card:hover{border-color:var(--green-m);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+    .fc-icon{font-size:2rem}
+    .fc-name{font-weight:700;font-size:.95rem}
+    .fc-meta{font-size:.74rem;color:var(--text2)}
+
+    /* SECTION HEAD */
+    .sec-head{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);padding:14px 0 6px}
+
+    /* FILE LIST */
+    .file-list{display:flex;flex-direction:column;gap:5px}
+    .file-row{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;gap:11px;padding:10px 14px;box-shadow:var(--shadow-sm)}
+    .file-row.miss{background:#fafafa;border-style:dashed;border-color:#ccc;opacity:.72}
+    .file-row.bad{border-color:#f8c59a;background:#fffaf5}
+    .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+    .d-ok{background:var(--green-m)}
+    .d-miss{background:transparent;border:2px dashed #aaa}
+    .d-bad{background:var(--yellow)}
+    .file-name{flex:1;font-size:.84rem;font-weight:500;font-family:'DM Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
+    .file-row.miss .file-name{color:var(--text3);font-style:italic;font-family:'DM Sans',sans-serif;font-weight:400}
+    .file-row.bad .file-name{color:var(--yellow)}
+    .file-badge{font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+    .fb-ok{background:var(--green-l);color:var(--green-d)}
+    .fb-miss{background:#efefef;color:#999}
+    .fb-bad{background:var(--yellow-l);color:var(--yellow)}
+    .file-link{display:inline-flex;align-items:center;color:var(--green-m);font-size:.74rem;font-weight:600;text-decoration:none;white-space:nowrap;padding:4px 8px;border-radius:5px;transition:background .12s;flex-shrink:0}
+    .file-link:hover{background:var(--green-l)}
+
+    /* STATE */
+    .state{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);display:flex;flex-direction:column;align-items:center;padding:60px 32px;text-align:center;gap:10px;box-shadow:var(--shadow-sm)}
+    .state-icon{font-size:2.8rem}
+    .state h2{font-size:1.05rem;font-weight:700}
+    .state p{font-size:.84rem;color:var(--text2);max-width:380px;line-height:1.6}
+    .spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--green-m);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    footer{text-align:center;padding:16px;font-size:.74rem;color:var(--text3)}
+
+    @media(max-width:600px){
+      .stat-num{font-size:1.4rem}
+      main{padding:14px 10px 50px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     ⚙️  KONFIGURASI — edit bagian ini
+════════════════════════════════════════ -->
+<script>
+const CONFIG = {
+  // URL dari Apps Script setelah di-deploy (lihat panduan)
+  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxwaOZ9ZfUq3UmCSatJF5-idkCy73Yf144_0TMHMPmP_pUSt2kdbMKeyZIYg9gxBa65/exec",
+
+  SCHOOL:  "SMK Negeri 1 Kismantoro",
+};
+
+// Daftar kelas yang diharapkan tiap semester
+const LEVELS  = ['X', 'XI', 'XII'];
+const JURUSAN = [
+  { kode: 'TJKT', jumlah: 3 },
+  { kode: 'TPFL', jumlah: 2 },
+  { kode: 'TO',   jumlah: 2 },
+];
+
+// Generate semua 21 kode kelas: XTJKT1 … XIITO2
+const EXPECTED = [];
+for (const lvl of LEVELS)
+  for (const j of JURUSAN)
+    for (let i = 1; i <= j.jumlah; i++)
+      EXPECTED.push(`${lvl}${j.kode}${i}`);
+
+// Regex validasi format nama file (tanpa ekstensi)
+// Contoh valid: RAPOR 2526 Gasal XITJKT1
+const FORMAT_RE = /^RAPOR\s+(\d{4})\s+(Gasal|Genap)\s+((X|XI|XII)(TJKT[1-3]|TPFL[1-2]|TO[1-2]))$/i;
+</script>
+<!-- ══════════════════════════════════════ -->
+
+<header>
+  <div class="h-inner">
+    <div class="h-logo">
+      <div class="h-logo-icon">📋</div>
+      <div>
+        <div class="h-title">Cek Raport</div>
+        <div class="h-sub" id="hSub"></div>
+      </div>
+    </div>
+    <button class="btn-h" onclick="doReload()">⟳ Refresh</button>
+  </div>
+</header>
+
+<div class="bc-wrap">
+  <div class="bc-inner" id="breadcrumb"></div>
+</div>
+
+<main>
+  <div id="cfgNote">
+    <strong>⚠️ SCRIPT_URL belum diisi</strong>
+    Ikuti langkah berikut:
+    <ol>
+      <li>Buka <a href="https://script.google.com" target="_blank">script.google.com</a> → Buat project baru</li>
+      <li>Paste isi file <code>code.gs</code>, isi <code>ROOT_FOLDER_ID</code> dengan ID folder Drive</li>
+      <li>Klik <b>Deploy → New deployment → Web App</b></li>
+      <li>Execute as: <b>Me</b> · Who has access: <b>Anyone</b> → Deploy</li>
+      <li>Salin URL yang muncul, paste ke <code>SCRIPT_URL</code> di file ini</li>
+    </ol>
+  </div>
+
+  <div id="statsRow" style="display:none">
+    <div class="stat-card">
+      <div class="stat-icon si-g">✅</div>
+      <div><div class="stat-num sn-g" id="sOk">0</div><div class="stat-label">Sudah upload</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon si-r">❌</div>
+      <div><div class="stat-num sn-r" id="sMiss">0</div><div class="stat-label">Belum upload</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon si-y">⚠️</div>
+      <div><div class="stat-num sn-y" id="sBad">0</div><div class="stat-label">Format salah</div></div>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="state"><div class="spinner"></div><h2>Memuat…</h2></div>
+  </div>
+</main>
+
+<footer id="foot"></footer>
+
+<script>
+/* ══════════════════════════════════
+   NAVIGATION STATE
+══════════════════════════════════ */
+// navStack: [{ id, name, type: 'root'|'year'|'semester' }]
+let navStack = [];
+
+/* ══════════════════════════════════
+   INIT
+══════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('hSub').textContent = CONFIG.SCHOOL;
+  document.getElementById('foot').textContent = `Cek Raport · ${CONFIG.SCHOOL}`;
+
+  if (CONFIG.SCRIPT_URL === 'SCRIPT_URL_KAMU') {
+    document.getElementById('cfgNote').style.display = 'block';
+    showState('⚙️', 'Konfigurasi belum diisi',
+      'Isi SCRIPT_URL di bagian CONFIG pada index.html. Lihat petunjuk di atas.');
+    return;
+  }
+
+  // Mulai dari root (tidak perlu folderId, script pakai ROOT_FOLDER_ID)
+  openFolder(null, 'Home', 'root');
+});
+
+function doReload() {
+  const top = navStack[navStack.length - 1];
+  if (!top) return;
+  navStack.pop();
+  openFolder(top.id, top.name, top.type);
+}
+
+/* ══════════════════════════════════
+   NAVIGATION
+══════════════════════════════════ */
+function openFolder(id, name, type) {
+  navStack.push({ id, name, type });
+  renderBreadcrumb();
+  load(id, type);
+}
+
+function goTo(idx) {
+  navStack = navStack.slice(0, idx + 1);
+  renderBreadcrumb();
+  const top = navStack[navStack.length - 1];
+  load(top.id, top.type);
+}
+
+function renderBreadcrumb() {
+  document.getElementById('breadcrumb').innerHTML = navStack.map((item, i) => {
+    const last  = i === navStack.length - 1;
+    const label = item.type === 'root' ? '🏠 Home' : item.name;
+    return `${i > 0 ? '<span class="bc-sep">›</span>' : ''}
+      <button class="bc-btn${last ? ' cur' : ''}" ${last ? '' : `onclick="goTo(${i})"`}>
+        ${esc(label)}
+      </button>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════
+   FETCH DARI APPS SCRIPT
+══════════════════════════════════ */
+async function fetchItems(folderId) {
+  const url = folderId
+    ? `${CONFIG.SCRIPT_URL}?folderId=${encodeURIComponent(folderId)}`
+    : CONFIG.SCRIPT_URL;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const data = await r.json();
+  if (!data.ok) throw new Error(data.error || 'Gagal mengambil data');
+  return data.items; // [{ id, name, type:'folder'|'file', modifiedTime, url }]
+}
+
+/* ══════════════════════════════════
+   LOAD & RENDER ROUTER
+══════════════════════════════════ */
+async function load(folderId, type) {
+  showState('', 'Memuat…', '', true);
+  document.getElementById('statsRow').style.display = 'none';
+  try {
+    const items = await fetchItems(folderId);
+    if (type === 'root' || type === 'year') {
+      renderFolders(items.filter(i => i.type === 'folder'), type);
+    } else {
+      renderSemester(items.filter(i => i.type === 'file'));
+    }
+  } catch(e) {
+    showState('❌', 'Gagal memuat',
+      `${esc(e.message)}<br>Pastikan Apps Script sudah di-deploy dan folder Drive di-share publik.`);
+  }
+}
+
+/* ══════════════════════════════════
+   RENDER: FOLDER LIST
+══════════════════════════════════ */
+function renderFolders(folders, currentType) {
+  const nextType = currentType === 'root' ? 'year' : 'semester';
+  if (!folders.length) {
+    showState('📭', 'Folder kosong',
+      currentType === 'root'
+        ? 'Tidak ada folder tahun di dalam folder root Drive.'
+        : 'Tidak ada folder semester di sini.');
+    return;
+  }
+  setContent(`
+    <div class="page-title">
+      ${currentType === 'root' ? '🗂️ Pilih Tahun Ajaran' : '📂 Pilih Semester'}
+      <span>${folders.length} folder</span>
+    </div>
+    <div class="folder-grid">
+      ${folders.map(f => `
+        <div class="folder-card" onclick="openFolder('${esc(f.id)}','${esc(f.name)}','${nextType}')">
+          <div class="fc-icon">${currentType === 'root' ? '🗂️' : semIcon(f.name)}</div>
+          <div class="fc-name">${esc(f.name)}</div>
+          <div class="fc-meta">Diperbarui ${fmtDate(f.modifiedTime)}</div>
+        </div>`).join('')}
+    </div>`);
+}
+
+function semIcon(n) {
+  const l = n.toLowerCase();
+  if (l.includes('gasal') || l.includes('ganjil')) return '🌱';
+  if (l.includes('genap')) return '🌿';
+  return '📂';
+}
+
+/* ══════════════════════════════════
+   RENDER: SEMESTER — file + statistik
+══════════════════════════════════ */
+function renderSemester(driveFiles) {
+  // Parse tiap file
+  const parsed = driveFiles.map(f => {
+    const base = f.name.replace(/\.[^.]+$/, '').trim();
+    const m    = base.match(FORMAT_RE);
+    return { ...f, valid: !!m, kelas: m ? m[3].toUpperCase() : null };
+  });
+
+  // Pisah: sesuai format & kelas dikenal vs tidak
+  const uploaded = {}; // kelas → file
+  const badFiles = [];
+
+  for (const f of parsed) {
+    if (f.valid && EXPECTED.includes(f.kelas)) {
+      uploaded[f.kelas] = f;
+    } else {
+      badFiles.push(f);
+    }
+  }
+
+  const nOk  = Object.keys(uploaded).length;
+  const nMiss = EXPECTED.length - nOk;
+  const nBad  = badFiles.length;
+
+  document.getElementById('sOk').textContent  = nOk;
+  document.getElementById('sMiss').textContent = nMiss;
+  document.getElementById('sBad').textContent  = nBad;
+  document.getElementById('statsRow').style.display = 'grid';
+
+  let html = `<div class="page-title">📄 Status Upload per Kelas <span>${EXPECTED.length} kelas diharapkan</span></div>`;
+
+  for (const lvl of LEVELS) {
+    html += `<div class="sec-head">Tingkat ${lvl}</div><div class="file-list">`;
+    for (const j of JURUSAN) {
+      for (let i = 1; i <= j.jumlah; i++) {
+        const kelas = `${lvl}${j.kode}${i}`;
+        const f     = uploaded[kelas];
+        if (f) {
+          html += `
+            <div class="file-row">
+              <div class="dot d-ok"></div>
+              <div class="file-name" title="${esc(f.name)}">${esc(f.name)}</div>
+              <span class="file-badge fb-ok">✓ Upload</span>
+              <a class="file-link" href="${esc(f.url)}" target="_blank" rel="noopener">↗ Drive</a>
+            </div>`;
+        } else {
+          html += `
+            <div class="file-row miss">
+              <div class="dot d-miss"></div>
+              <div class="file-name">Belum ada — ${kelas}</div>
+              <span class="file-badge fb-miss">Belum</span>
+            </div>`;
+        }
+      }
+    }
+    html += `</div>`;
+  }
+
+  if (badFiles.length) {
+    html += `
+      <div class="sec-head">⚠️ Format tidak sesuai — ${badFiles.length} file</div>
+      <div class="file-list">
+        ${badFiles.map(f => `
+          <div class="file-row bad">
+            <div class="dot d-bad"></div>
+            <div class="file-name" title="${esc(f.name)}">${esc(f.name)}</div>
+            <span class="file-badge fb-bad">Format ⚠</span>
+            <a class="file-link" href="${esc(f.url)}" target="_blank" rel="noopener">↗ Drive</a>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  setContent(html);
+}
+
+/* ══════════════════════════════════
+   HELPERS
+══════════════════════════════════ */
+function setContent(h) { document.getElementById('content').innerHTML = h; }
+
+function showState(icon, title, msg, spinner = false) {
+  setContent(`<div class="state">
+    ${spinner ? '<div class="spinner"></div>' : `<div class="state-icon">${icon}</div>`}
+    <h2>${title}</h2>
+    ${msg ? `<p>${msg}</p>` : ''}
+  </div>`);
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/"/g,'&quot;')
+    .replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,'&#39;');
+}
+</script>
+</body>
+</html>
