@@ -219,7 +219,7 @@ function openFolder(id, name, type) {
 }
 
 function goTo(idx) {
-  navStack = navStack.slice(0, idx + 1);
+  navStack = navStack = navStack.slice(0, idx + 1);
   const top = navStack[navStack.length - 1];
   renderBreadcrumb();
   load(top.id, top.type);
@@ -252,7 +252,10 @@ async function load(folderId, type) {
     const items = await fetchFromScript(folderId);
 
     if (type === 'root') {
-      renderFolderGrid(items.filter(i => i.type === 'folder'), 'year', 'Tahun Ajaran');
+      const rootFolders = items.filter(i => i.type === 'folder');
+      // URUTKAN BERDASARKAN NAMA (DESCENDING)
+      rootFolders.sort((a, b) => b.name.localeCompare(a.name, undefined, { numeric: true, sensitivity: 'base' }));
+      renderFolderGrid(rootFolders, 'year', 'Tahun Ajaran');
     } 
     else if (type === 'year') {
       const semesterFolders = items.filter(i => i.type === 'folder');
